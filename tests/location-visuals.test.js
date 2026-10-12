@@ -21,7 +21,7 @@ test("every currently published aurora location gets one visual experience from 
   assert.ok(r,"unknown forecast region for "+l.slug);
   const section=renderLocationVisuals(l,r,state);
   const scripts=locationVisualScript(l,r,state,locations);
-  assert.ok(section.includes(l.name));
+  assert.ok(section.includes(l.name.replaceAll('&','&amp;')));
   for(const key of ["id=\"loc-aurora-map\"","id=\"loc-noaa-oval\"","id=\"loc-kp-chart\"","services.swpc.noaa.gov/images/aurora-forecast-northern-hemisphere.jpg","Maptoolkit"]){assert.ok(section.includes(key),"missing "+key+" for "+l.slug)}
   assert.ok(section.includes("Kp "+r.planning_kp),"Kp must come from local engine");
   assert.ok(scripts.includes("styles.maptoolkit.org/dark.json"));
